@@ -7,8 +7,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.core.io.InputStreamSource;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.io.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -36,5 +39,23 @@ public class DemoApplicationTests {
     @Test
     public void sendAttachedMessageTest() {
         emailService.sendMessageWithAttachment(receiverAddr, subject, body, pathToAttachment);
+    }
+
+    @Test
+    public void sendInputStreamTest() {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        ObjectOutputStream oos = null;
+
+        String testObj = "test";
+        try {
+            oos = new ObjectOutputStream(baos);
+            oos.writeObject(testObj);
+            oos.flush();
+            oos.close();
+        } catch (IOException ioe) {
+            log.debug("[jujin] {}", ioe);
+        }
+        InputStreamSource inputStreamSource = new InputStreamResource(new ByteArrayInputStream(baos.toByteArray()));
+        emailService.sendMessageWithAttachment(receiverAddr, subject, body, inputStreamSource);
     }
 }
