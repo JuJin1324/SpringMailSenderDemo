@@ -1,16 +1,12 @@
 # SpringMailSenderDemo
-JavaMailSender demo using SpringBoot 2.0
+SpringBoot 2.0 에서 Email 보내는 샘플 코드
 
-## 개요
-* SpringBoot 2.0 에서 Email 보내는 샘플 코드
-
-## 사용 Dependency
+## Maven
 ```
-
-    <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-mail</artifactId>
-    </dependency>
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-mail</artifactId>
+</dependency>
 ```
 
 ## 실행을 위한 메일 보안 설정(Gmail 기준)
