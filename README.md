@@ -2,7 +2,7 @@
 SpringBoot 2.0 에서 Email 보내는 샘플 코드
 
 ## Maven
-```
+```xml
 <dependency>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-mail</artifactId>
